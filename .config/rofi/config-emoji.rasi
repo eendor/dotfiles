@@ -1,0 +1,47 @@
+/* Main Config - emoji */
+
+@import "~/.config/rofi/config.rasi"
+
+/* ---- Mainbox ---- */
+mainbox {
+  children: [ "inputbar", "message", "listview" ];
+  spacing:  10px;
+}
+
+/* ---- Window ---- */
+window {
+  width:  680px;
+}
+
+/* ---- Entry ---- */
+entry {
+  placeholder: "Search emoji...";
+  horizontal-align: 0.0;
+}
+
+/* ---- Listview ---- */
+listview {
+  columns:      2;
+  lines:        8;
+  fixed-height: false;
+  scrollbar:    false;
+  spacing:      4px;
+  cycle:        true;
+}
+
+/* ---- Elements ---- */
+element {
+  orientation: horizontal;
+  padding:     8px 12px;
+  spacing:     8px;
+}
+
+element-icon {
+  enabled: false;
+}
+
+element-text {
+  font:             "SF Pro Text 12.5";
+  horizontal-align: 0.0;
+  vertical-align:   0.5;
+}

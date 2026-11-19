@@ -1,0 +1,133 @@
+/* =============================================================================
+   OLED LIQUID GLASS — iOS Spotlight-style rofi theme
+   Matches the Eww bar. Blur comes from the Hyprland layer rule "rofi-glass".
+   ============================================================================= */
+
+configuration {
+    modi:                 "drun,run,window";
+    show-icons:           true;
+    icon-theme:           "Osage-Mono";
+    display-drun:         "";
+    display-run:          "";
+    display-window:       "";
+    drun-display-format:  "{name}";
+    window-format:        "{c} · {t}";
+    hover-select:         true;
+    me-select-entry:      "MouseSecondary";
+    me-accept-entry:      "MousePrimary";
+    font:                 "SF Pro Text 12";
+}
+
+* {
+    glass:        rgba(0, 0, 0, 82%);
+    field:        rgba(255, 255, 255, 9%);
+    hover:        rgba(255, 255, 255, 8%);
+    selected:     rgba(255, 255, 255, 17%);
+    rim:          rgba(255, 255, 255, 16%);
+    label:        #ffffff;
+    label2:       rgba(235, 235, 245, 60%);
+    red:          #ff453a;
+
+    background-color: transparent;
+    text-color:       @label;
+    margin:           0;
+    padding:          0;
+    spacing:          0;
+}
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            640px;
+    background-color: @glass;
+    border:           1px solid;
+    border-color:     @rim;
+    border-radius:    28px;
+    padding:          14px;
+}
+
+mainbox {
+    children: [ inputbar, message, listview ];
+    spacing:  10px;
+}
+
+/* Search pill */
+inputbar {
+    children:         [ textbox-search-icon, entry ];
+    background-color: @field;
+    border:           1px solid;
+    border-color:     rgba(255, 255, 255, 10%);
+    border-radius:    22px;
+    padding:          11px 16px;
+    spacing:          10px;
+}
+
+textbox-search-icon {
+    expand:     false;
+    str:        "";
+    font:       "FantasqueSansM Nerd Font Mono 15";
+    text-color: @label2;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+    width:      24px;
+}
+
+entry {
+    placeholder:       "Search";
+    placeholder-color: @label2;
+    font:              "SF Pro Display 15";
+    cursor:            text;
+    vertical-align:    0.5;
+}
+
+prompt, textbox-prompt-colon, case-indicator, mode-switcher { enabled: false; }
+
+message {
+    background-color: @field;
+    border-radius:    16px;
+    padding:          10px 14px;
+}
+textbox { text-color: @label2; }
+
+listview {
+    lines:        8;
+    columns:      1;
+    fixed-height: false;
+    dynamic:      true;
+    cycle:        true;
+    scrollbar:    false;
+    spacing:      2px;
+}
+
+element {
+    padding:       8px 12px;
+    spacing:       12px;
+    border-radius: 14px;
+    cursor:        pointer;
+}
+
+element normal.normal, element alternate.normal { background-color: transparent; }
+element normal.urgent, element alternate.urgent { text-color: @red; }
+element normal.active, element alternate.active { text-color: @label; }
+
+element selected.normal, element selected.active {
+    background-color: @selected;
+}
+element selected.urgent {
+    background-color: rgba(255, 69, 58, 25%);
+}
+
+element-icon {
+    size:           30px;
+    vertical-align: 0.5;
+    cursor:         inherit;
+}
+
+element-text {
+    font:           "SF Pro Text 12.5";
+    vertical-align: 0.5;
+    text-color:     inherit;
+    cursor:         inherit;
+}
+
+element selected element-text { text-color: @label; }

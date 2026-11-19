@@ -1,0 +1,239 @@
+/* =============================================================================
+   OLED LIQUID GLASS — iOS-style frosted capsules over pure black
+   Blur comes from Hyprland (layer rule "waybar-glass" in hyprland.lua).
+   Previous theme: style.css.oled-before-glass
+   ============================================================================= */
+
+@define-color glass        rgba(0, 0, 0, 0.86);
+@define-color glass_hi     rgba(255, 255, 255, 0.08);
+@define-color glass_hover  rgba(255, 255, 255, 0.14);
+@define-color glass_active rgba(255, 255, 255, 0.22);
+@define-color rim          rgba(255, 255, 255, 0.16);
+@define-color rim_top      rgba(255, 255, 255, 0.34);
+@define-color label        #ffffff;
+@define-color label2       rgba(235, 235, 245, 0.62);
+@define-color ios_green    #30d158;
+@define-color ios_orange   #ff9f0a;
+@define-color ios_red      #ff453a;
+@define-color ios_blue     #0a84ff;
+
+* {
+    font-family: "SF Pro Display", "SF Pro Text", "SF Pro", "Noto Sans CJK JP", "FantasqueSansM Nerd Font", "Font Awesome 7 Free", sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: @label;
+}
+
+/* Glass capsules */
+.modules-left,
+.modules-center,
+.modules-right {
+    background-color: @glass;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.0) 50%);
+    border: 1px solid @rim;
+    border-top-color: @rim_top;
+    border-radius: 999px;
+    padding: 3px 5px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* Modules: clear, capsule-shaped */
+#custom-launcher,
+#taskbar,
+#custom-inabakumori,
+#mpris,
+#clock,
+#custom-weather,
+#pulseaudio,
+#backlight,
+#cpu,
+#memory,
+#temperature,
+#network,
+#bluetooth,
+#battery,
+#custom-restore,
+#tray,
+#custom-power {
+    padding: 2px 10px;
+    margin: 0 1px;
+    border-radius: 999px;
+    color: @label;
+    background-color: transparent;
+    border: 1px solid transparent;
+    transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+#custom-launcher:hover,
+#custom-inabakumori:hover,
+#mpris:hover,
+#clock:hover,
+#custom-weather:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#network:hover,
+#bluetooth:hover,
+#battery:hover,
+#custom-restore:hover {
+    background-color: @glass_hover;
+    border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* Launcher: a small glass button */
+#custom-launcher {
+    font-size: 15px;
+    padding: 0 11px;
+    background-color: @glass_hi;
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Taskbar */
+#taskbar {
+    padding: 0 2px;
+    margin: 0;
+}
+
+#taskbar button {
+    padding: 2px 8px;
+    margin: 0 2px;
+    border-radius: 999px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+#taskbar button:hover {
+    background-color: @glass_hover;
+}
+
+#taskbar button.active {
+    background-color: @glass_active;
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+#taskbar button.minimized {
+    opacity: 0.45;
+}
+
+/* Center badge */
+#custom-inabakumori {
+    font-family: "Noto Sans CJK JP", "SF Pro Display", sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background-color: @glass_hi;
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+#mpris {
+    font-size: 12px;
+    color: @label2;
+}
+
+#mpris.playing {
+    color: @label;
+}
+
+#clock {
+    font-weight: 700;
+}
+
+#custom-weather.offline,
+#network.disconnected,
+#bluetooth.disabled {
+    color: @label2;
+}
+
+#bluetooth {
+    padding: 2px 8px;
+}
+
+#bluetooth.connected {
+    color: @ios_blue;
+}
+
+/* Status colors (iOS system palette) */
+#pulseaudio.muted {
+    color: @ios_red;
+}
+
+#temperature.critical {
+    color: @ios_red;
+    background-color: rgba(255, 69, 58, 0.16);
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @ios_green;
+}
+
+#battery.warning:not(.charging) {
+    color: @ios_orange;
+}
+
+#battery.critical:not(.charging) {
+    color: @ios_red;
+    animation-name: pulse;
+    animation-duration: 1.2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes pulse {
+    to {
+        background-color: rgba(255, 69, 58, 0.28);
+    }
+}
+
+#tray {
+    padding: 2px 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: rgba(255, 69, 58, 0.3);
+}
+
+/* Power: red glyph on glass, fills red on hover */
+#custom-power {
+    font-size: 13.5px;
+    padding: 0 11px;
+    color: @ios_red;
+    background-color: rgba(255, 69, 58, 0.12);
+}
+
+#custom-power:hover {
+    color: #ffffff;
+    background-color: @ios_red;
+}
+
+/* Tooltips: glass cards */
+tooltip {
+    background-color: rgba(0, 0, 0, 0.88);
+    border: 1px solid @rim;
+    border-top-color: @rim_top;
+    border-radius: 16px;
+    padding: 8px 12px;
+}
+
+tooltip label {
+    color: @label;
+    font-family: "SF Pro Text", "Noto Sans CJK JP", monospace;
+    font-size: 12px;
+}

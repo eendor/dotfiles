@@ -1,0 +1,9 @@
+width=750
+height=520
+show=drun
+allow_images=true
+image_size=48
+columns=3
+prompt=Search apps…
+insensitive=true
+gtk_dark=true
