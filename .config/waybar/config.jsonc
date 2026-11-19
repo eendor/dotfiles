@@ -37,7 +37,7 @@
     "format": "☂",
     "tooltip": true,
     "tooltip-format": "稲葉曇 · Applications (Super + Space)",
-    "on-click": "/home/rodnee/.local/bin/osage-apps",
+    "on-click": "$HOME/.local/bin/osage-apps",
     "on-click-right": "rofi -show drun"
   },
 
@@ -100,9 +100,9 @@
     "interval": 900,
     "signal": 8,
     "return-type": "json",
-    "exec": "/home/rodnee/.local/bin/waybar-weather",
-    "on-click": "/home/rodnee/.local/bin/osage-weather-view",
-    "on-click-right": "/home/rodnee/.local/bin/waybar-weather --refresh"
+    "exec": "$HOME/.local/bin/waybar-weather",
+    "on-click": "$HOME/.local/bin/osage-weather-view",
+    "on-click-right": "$HOME/.local/bin/waybar-weather --refresh"
   },
 
   "pulseaudio": {
@@ -181,7 +181,7 @@
     "format": "󰘔",
     "tooltip": true,
     "tooltip-format": "Restore Minimized Windows (Super+Shift+N)",
-    "on-click": "/home/rodnee/.local/bin/miku-windows restore"
+    "on-click": "$HOME/.local/bin/miku-windows restore"
   },
 
   "tray": {
@@ -193,6 +193,6 @@
     "format": "⏻",
     "tooltip": true,
     "tooltip-format": "Power Menu (Shutdown, Restart, Sleep, Logout)",
-    "on-click": "/home/rodnee/.local/bin/osage-power"
+    "on-click": "$HOME/.local/bin/osage-power"
   }
 }
